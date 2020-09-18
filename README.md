@@ -1,5 +1,5 @@
 <!-- omit in toc -->
-# 🕵️‍♂️ Keep The Receipt
+# 🕵️‍♂️ Keep The Receipt: Community Landing Page
 
 <!-- omit in toc -->
 ## Table of Contents
