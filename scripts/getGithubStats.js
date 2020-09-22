@@ -61,7 +61,7 @@ const getGithubStats = async (token) => {
     url: 'https://api.github.com/graphql',
     method: 'POST',
     headers: {
-      Authorization: 'Bearer d9c1292ba57e324a274f3649bdfdb4fd68d61949'
+      Authorization: `bearer ${token}`
     },
     data: {
       query: QUERY,

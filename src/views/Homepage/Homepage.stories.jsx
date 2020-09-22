@@ -14,8 +14,7 @@ Default.args = {
   pageContext: {
     githubStats: [
       {
-        name: 'Example',
-        count: 12,
+        progress: 12,
       }
     ]
   }
