@@ -26,8 +26,6 @@ exports.createPages = async ({ actions }) => {
   const outstanding = keys.slice(0, keys.length - 2).reduce((result, key) => result + githubStats[key].count, 0);
   const progress = 100 - Math.floor(outstanding / total * 100);
 
-  console.log(githubStats, outstanding, total)
-
   actions.createPage({
     path: '/',
     component: path.resolve(`./src/views/Homepage/Homepage.jsx`),
