@@ -71,7 +71,7 @@ const Title = styled.h1`
     font-weight: 800;
     font-size: 3rem;
     letter-spacing: -1.5px;
-    margin: 1rem 0 1.5rem;
+    margin: 1rem 0 0;
     font-family: Montserrat, sans-serif;
     text-transform: uppercase;
 `;
@@ -111,6 +111,64 @@ const Label = styled.div`
     letter-spacing: -0.25px;
 `
 
+const Badge = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0 2rem;
+`
+
+const List = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1rem;
+`
+
+const Person = styled.div`
+    width: 50%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+`
+
+const Avatar = styled.img`
+    border-radius: 50%;
+    width: 40px;
+`
+
+const Name = styled.a`
+    margin-left: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(0, 0, 0, 0.87);
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.15)
+    }
+`
+
+const HacktoberBadge = () => (
+    <Badge>
+        <a href="https://hacktoberfest.digitalocean.com/" target="_blank" rel="noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="208" height="20" role="img" aria-label="Hacktober Fest 2020: Official Event">
+                <title>Hacktober Fest 2020: Official Event</title>
+                <linearGradient id="s" x2="0" y2="100%"><stop offset="0" stopColor="#bbb" stopOpacity=".1"/><stop offset="1" stopOpacity=".1"/></linearGradient>
+                <clipPath id="r"><rect width="208" height="20" rx="3" fill="#fff"/></clipPath>
+                <g clipPath="url(#r)"><rect width="125" height="20" fill="#555"/>
+                
+                <rect x="125" width="83" height="20" fill="#fe7d37"/><rect width="208" height="20" fill="url(#s)"/></g>
+                
+                <g fill="#fff" textAnchor="middle" fontFamily="Verdana,Geneva,DejaVu Sans,sans-serif" textRendering="geometricPrecision" fontSize="110">
+                    <text aria-hidden="true" x="635" y="150" fill="#010101" fillOpacity=".3" transform="scale(.1)" textLength="1150">Hacktober Fest 2020</text>
+                    <text x="635" y="140" transform="scale(.1)" fill="#fff" textLength="1150">Hacktober Fest 2020</text><text aria-hidden="true" x="1655" y="150" fill="#010101" fillOpacity=".3" transform="scale(.1)" textLength="730">Official Event</text><text x="1655" y="140" transform="scale(.1)" fill="#fff" textLength="730">Official Event</text>
+                </g>
+            </svg>
+        </a>
+    </Badge>
+);
+
 /**
  * @name Homepage
  *
@@ -120,7 +178,7 @@ const Label = styled.div`
  * @param {string} props.children
  */
 export const Homepage = (props) => {
-    const { pageContext: { progress }} = props;
+    const { pageContext: { githubStats }} = props;
 
     return (
         <Base>
@@ -131,6 +189,8 @@ export const Homepage = (props) => {
                     <Paper>
                         <Title>Keep the Receipt</Title>
 
+                        <HacktoberBadge />
+
                         <FrameWrap>
                             <Frame width="100%" height="100%" src="https://www.youtube.com/embed/JtTMcY6v0bs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
                         </FrameWrap>
@@ -139,7 +199,7 @@ export const Homepage = (props) => {
 
                         <Paragraph><strong><em>Keep the receipt</em> is a volunteer-driven project to catalogue South African provincial and national government spending related to COVID-19.</strong></Paragraph>
 
-                        <Paragraph>The aim is to convert the existing documents in a machine-readable, searchable format. <a href="https://www.meetup.com/Codebridge/" target="_blank">Codebridge</a> is calling on the broader tech community to help with this task.</Paragraph>
+                        <Paragraph>The aim is to convert the existing documents in a machine-readable, searchable format. <a href="https://www.meetup.com/Codebridge/" target="_blank" rel="noreferrer">Codebridge</a> is calling on the broader tech community to help with this task.</Paragraph>
                         
                         
                         <Paragraph>In order to get started please take a couple of minutes to watch the above video.</Paragraph>
@@ -150,10 +210,19 @@ export const Homepage = (props) => {
                             <Button variant="contained" href="https://github.com/South-Africa-Government-Procurement/Data-cleaning/upload/master" target="_blank">3. Create Pull Request</Button>
                         </Actions>
 
+                        <SubTitle>Contributors</SubTitle>
+
+                        <List>
+                            {githubStats.collaborators.map(({ id, avatarUrl, name, url }) => <Person key={id}>
+                                <Avatar src={avatarUrl} alt="" />
+                                <Name href={url} target="_blank" rel="noreferrer">{name}</Name>
+                             </Person>)}
+                        </List>
+
                         <SubTitle>Total Progress</SubTitle>
 
-                        <Label><span><strong>{progress}%</strong> Captured</span></Label>
-                        <LinearProgress value={progress} variant="determinate" />
+                        <Label><span><strong>4%</strong> Captured</span></Label>
+                        <LinearProgress value={4} variant="determinate" />
                     </Paper>
 
                     <img src={perforationBottom} alt="" />

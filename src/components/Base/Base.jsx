@@ -28,7 +28,7 @@ export const Base = (props) => {
           content="Keep the receipt is a volunteer-driven project to catalogue South African provincial and national government spending related to COVID-19."
         />
 
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
       </Helmet>
 
       <CssBaseline />
