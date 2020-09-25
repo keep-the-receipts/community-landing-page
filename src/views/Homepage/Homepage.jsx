@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button as MuiButton, LinearProgress as MuiLinearProgress } from '@material-ui/core';
+// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 import { Base } from '../../components'
-import { perforationBottom, perforationTop } from './assets';
+
 
 const Layout = styled.div`
     padding: 3rem 1rem 10rem;
@@ -69,18 +70,23 @@ const Button = styled(MuiButton)`
 const Title = styled.h1`
     text-align: center;
     font-weight: 800;
-    font-size: 3rem;
-    letter-spacing: -1.5px;
+    letter-spacing: -3px;
     margin: 1rem 0 0;
     font-family: Montserrat, sans-serif;
     text-transform: uppercase;
+    line-height: 1;
+    font-size: 2.5rem;
+
+    @media (min-width: 600px) {
+        font-size: 3rem;
+    }
 `;
 
 const SubTitle = styled.h2`
     text-align: center;
     font-weight: 800;
     font-size: 1.75rem;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
     font-family: Montserrat, sans-serif;
     text-transform: uppercase;
     margin: 2rem 0 0.25rem;
@@ -123,42 +129,67 @@ const List = styled.div`
     flex-wrap: wrap;
     width: 100%;
     padding: 1rem;
+    justify-content: center;
 `
 
-const Person = styled.div`
-    width: 50%;
-    padding: 0.5rem;
-    display: flex;
+const Person = styled.a`
+    max-width: 50%;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    border-radius: 4%;
+    display: inline-flex;
     align-items: center;
+    text-decoration: none;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.1)
+    }
 `
 
 const Avatar = styled.img`
     border-radius: 50%;
     width: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.2)
 `
 
-const Name = styled.a`
+const Name = styled.span`
+    font-weight: 700;
+    font-family: Montserrat,sans-serif;
     margin-left: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: rgba(0, 0, 0, 0.87);
-
-    &:hover {
-        background: rgba(0, 0, 0, 0.15)
-    }
 `
+
+// const ChartWrap = styled.div`
+//     padding: 2rem 1rem;
+//     display: flex;
+//     justify-content: center;
+// `
+
+const BottomPerf = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 10">
+        <path d="M6.15 10a9 9 0 1118 0h7.41a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0H260a9 9 0 0118 0h7.41a9 9 0 0118 0h7.41a9 9 0 0118 0h7.41a9 9 0 0118 0h7.41a9 9 0 0118 0H387a9 9 0 0118 0h7.41a9 9 0 0118 0h7.41a9 9 0 0118 0h7.41a9 9 0 0118 0h7.41a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0h7.42a9 9 0 1118 0H640V0H0v10z" fill="#fff" data-name="Layer 1"/>
+    </svg>
+)
+
+const TopPerf = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 10">
+        <path d="M633.85 0a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.27a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9H380a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.37a9 9 0 01-9 9 9 9 0 01-9-9H253a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.24a9 9 0 01-9 9 9 9 0 01-9-9h-7.39a9 9 0 01-9 9 9 9 0 01-9-9H24.5a9 9 0 01-9 9 9 9 0 01-9-9H0v10h640V0z" fill="#fff" />
+    </svg>
+)
 
 const HacktoberBadge = () => (
     <Badge>
         <a href="https://hacktoberfest.digitalocean.com/" target="_blank" rel="noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="208" height="20" role="img" aria-label="Hacktober Fest 2020: Official Event">
                 <title>Hacktober Fest 2020: Official Event</title>
+
                 <linearGradient id="s" x2="0" y2="100%"><stop offset="0" stopColor="#bbb" stopOpacity=".1"/><stop offset="1" stopOpacity=".1"/></linearGradient>
                 <clipPath id="r"><rect width="208" height="20" rx="3" fill="#fff"/></clipPath>
                 <g clipPath="url(#r)"><rect width="125" height="20" fill="#555"/>
                 
-                <rect x="125" width="83" height="20" fill="#fe7d37"/><rect width="208" height="20" fill="url(#s)"/></g>
+                <rect x="125" width="83" height="20" fill="#0069ff"/><rect width="208" height="20" fill="url(#s)"/></g>
                 
                 <g fill="#fff" textAnchor="middle" fontFamily="Verdana,Geneva,DejaVu Sans,sans-serif" textRendering="geometricPrecision" fontSize="110">
                     <text aria-hidden="true" x="635" y="150" fill="#010101" fillOpacity=".3" transform="scale(.1)" textLength="1150">Hacktober Fest 2020</text>
@@ -184,7 +215,7 @@ export const Homepage = (props) => {
         <Base>
             <Layout>
                 <Container>
-                    <img src={perforationTop} alt="" />
+                    <TopPerf />
 
                     <Paper>
                         <Title>Keep the Receipt</Title>
@@ -192,7 +223,7 @@ export const Homepage = (props) => {
                         <HacktoberBadge />
 
                         <FrameWrap>
-                            <Frame width="100%" height="100%" src="https://www.youtube.com/embed/JtTMcY6v0bs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+                            <Frame width="100%" height="100%" src="https://www.youtube.com/embed/c4rBE-BUiv0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
                         </FrameWrap>
 
                         <SubTitle>Get Involved</SubTitle>
@@ -201,21 +232,20 @@ export const Homepage = (props) => {
 
                         <Paragraph>The aim is to convert the existing documents in a machine-readable, searchable format. <a href="https://www.meetup.com/Codebridge/" target="_blank" rel="noreferrer">Codebridge</a> is calling on the broader tech community to help with this task.</Paragraph>
                         
-                        
                         <Paragraph>In order to get started please take a couple of minutes to watch the above video.</Paragraph>
 
                         <Actions>
-                            <Button variant="contained" href="https://www.youtube.com/embed/JtTMcY6v0bs">1. Watch Video</Button>
+                            <Button variant="contained" href="https://www.youtube.com/watch?v=c4rBE-BUiv0">1. Watch Video</Button>
                             <Button variant="contained" href="https://github.com/South-Africa-Government-Procurement/Data-cleaning/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee" target="_blank">2. Select an Issue</Button>
-                            <Button variant="contained" href="https://github.com/South-Africa-Government-Procurement/Data-cleaning/upload/master" target="_blank">3. Create Pull Request</Button>
+                            <Button variant="contained" href="https://github.com/South-Africa-Government-Procurement/Data-cleaning/new/master" target="_blank">3. Create Pull Request</Button>
                         </Actions>
 
                         <SubTitle>Contributors</SubTitle>
 
                         <List>
-                            {githubStats.collaborators.map(({ id, avatarUrl, name, url }) => <Person key={id}>
+                            {githubStats.collaborators.map(({ id, avatarUrl, name, url }) => <Person key={id} href={url}>
                                 <Avatar src={avatarUrl} alt="" />
-                                <Name href={url} target="_blank" rel="noreferrer">{name}</Name>
+                                <Name target="_blank" rel="noreferrer">{name}</Name>
                              </Person>)}
                         </List>
 
@@ -225,7 +255,7 @@ export const Homepage = (props) => {
                         <LinearProgress value={4} variant="determinate" />
                     </Paper>
 
-                    <img src={perforationBottom} alt="" />
+                    <BottomPerf />
                 </Container>
             </Layout>
         </Base>
