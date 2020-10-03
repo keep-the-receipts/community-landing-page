@@ -11,34 +11,22 @@ const faker = require("faker");
 const QUERY = `
   query {
     repository(owner: "South-Africa-Government-Procurement", name: "Data-cleaning") {
-      collaborators {
-        edges {
-          node {
-            id
-            avatarUrl
-            name
-            url
-          }
-        }
+      pullRequests {
+        totalCount
       }
-    }
 
-    organization(login: "South-Africa-Government-Procurement") {
-      project(number: 1) {
-        columns(first: 100) {
-          edges {
-            node {
-              name
-              cards {
-                totalCount
-              }
-            }
-          }
+      mentionableUsers(first: 100) {
+        nodes {
+          id
+          avatarUrl
+          name
+          url
         }
       }
     }
   }
 `;
+
 
 /**
  * @name transformResponse
@@ -53,36 +41,22 @@ const transformResponses = (response) => {
     data: {
       data: {
         repository: {
-          collaborators: {
-            edges: collaborators
-          }
-        },
-
-        organization: {
-          project: {
-            columns: { edges: columns },
+          mentionableUsers: {
+            nodes: collaborators
           },
+
+          pullRequests: {
+            totalCount
+          }
         },
       },
     },
   } = response;
 
   return {
-    collaborators: collaborators.map(({ node }) => node),
-
-    columns: columns.reduce(
-      (
-        result,
-        {
-          node: {
-            name,
-            cards: { totalCount: count },
-          },
-        }
-      ) => [...result, { name, count }],
-      []
-    ),
-    }
+    collaborators: collaborators.filter(({ name }) => !!name),
+    pullRequests: totalCount
+  }
 };
 
 /**

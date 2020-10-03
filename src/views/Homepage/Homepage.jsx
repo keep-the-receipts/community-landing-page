@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button as MuiButton, LinearProgress as MuiLinearProgress } from '@material-ui/core';
-// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { Button as MuiButton } from '@material-ui/core';
 
 import { Base } from '../../components'
 
@@ -101,12 +100,6 @@ const Paragraph = styled.p`
     letter-spacing: -0.25px;
 `
 
-const LinearProgress = styled(MuiLinearProgress)`
-    height: 1rem;
-    border-radius: 50px;
-    margin: 0rem 2rem 0;
-`;
-
 const Label = styled.div`
     display: flex;
     justify-content: center;
@@ -128,7 +121,7 @@ const List = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 3rem;
     justify-content: center;
 `
 
@@ -161,11 +154,10 @@ const Name = styled.span`
     color: rgba(0, 0, 0, 0.87);
 `
 
-// const ChartWrap = styled.div`
-//     padding: 2rem 1rem;
-//     display: flex;
-//     justify-content: center;
-// `
+const Icon = styled.div`
+    padding: 0.1rem;
+    opacity: 0.7;
+`
 
 const BottomPerf = () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 10">
@@ -177,6 +169,12 @@ const TopPerf = () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 10">
         <path d="M633.85 0a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.27a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9H380a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.37a9 9 0 01-9 9 9 9 0 01-9-9H253a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.41a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.42a9 9 0 01-9 9 9 9 0 01-9-9h-7.24a9 9 0 01-9 9 9 9 0 01-9-9h-7.39a9 9 0 01-9 9 9 9 0 01-9-9H24.5a9 9 0 01-9 9 9 9 0 01-9-9H0v10h640V0z" fill="#fff" />
     </svg>
+)
+
+const File = () => (
+    <Icon>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.867 477.867" width="20"><path d="M421.649 90.317L336.316 4.983A17.27 17.27 0 00324.267 0h-256C58.841 0 51.2 7.641 51.2 17.067V460.8c0 9.426 7.641 17.067 17.067 17.067H409.6c9.426 0 17.067-7.641 17.067-17.067V102.4a17.276 17.276 0 00-5.018-12.083zm-80.316-32.051l27.068 27.068h-27.068V58.266zm51.2 385.467h-307.2v-409.6H307.2V102.4c0 9.426 7.641 17.067 17.067 17.067h68.267v324.266z"/><path d="M341.333 153.6h-204.8c-9.426 0-17.067 7.641-17.067 17.067s7.641 17.067 17.067 17.067h204.8c9.426 0 17.067-7.641 17.067-17.067s-7.641-17.067-17.067-17.067zM341.333 221.867h-204.8c-9.426 0-17.067 7.641-17.067 17.067S127.108 256 136.533 256h204.8c9.426 0 17.067-7.641 17.067-17.067s-7.641-17.066-17.067-17.066zM341.333 290.133h-204.8c-9.426 0-17.067 7.641-17.067 17.067s7.641 17.067 17.067 17.067h204.8c9.426 0 17.067-7.641 17.067-17.067s-7.641-17.067-17.067-17.067zM341.333 358.4h-204.8c-9.426 0-17.067 7.641-17.067 17.067s7.641 17.067 17.067 17.067h204.8c9.426 0 17.067-7.641 17.067-17.067s-7.641-17.067-17.067-17.067z"/></svg>
+    </Icon>
 )
 
 const HacktoberBadge = () => (
@@ -251,8 +249,9 @@ export const Homepage = (props) => {
 
                         <SubTitle>Total Progress</SubTitle>
 
-                        <Label><span><strong>4%</strong> Captured</span></Label>
-                        <LinearProgress value={4} variant="determinate" />
+                        <Label><span><strong>{githubStats.pullRequests}</strong> Files Processed To-date</span></Label>
+                        
+                        <List>{new Array(githubStats.pullRequests).fill(undefined).map(() => <File />)}</List>
                     </Paper>
 
                     <BottomPerf />
